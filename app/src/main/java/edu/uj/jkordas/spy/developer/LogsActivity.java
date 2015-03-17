@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -206,13 +205,6 @@ public class LogsActivity extends Activity {
             final TextView tv = (TextView) listItem.findViewById(R.id.tv_list_item);
             tv.setText(slocation);
 
-            tv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String longitude = slocation.split(",")[0];
-                    Toast.makeText(context, slocation, Toast.LENGTH_SHORT).show();
-                }
-            });
             return listItem;
         }
 

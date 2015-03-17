@@ -57,13 +57,6 @@ public class CallDataSource {
         Logger.log(this.context, "call table cleared");
     }
 
-	/*
-     * public void deleteComment(Comment comment) { long id = comment.getId();
-	 * System.out.println("Comment deleted with id: " + id);
-	 * database.delete(MySQLiteHelper.TABLE_COMMENTS, MySQLiteHelper.COLUMN_ID +
-	 * " = " + id, null); }
-	 */
-
     public List<Call> getAllCalls() {
         List<Call> callList = new ArrayList<Call>();
 

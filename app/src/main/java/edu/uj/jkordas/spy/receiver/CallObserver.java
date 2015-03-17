@@ -36,7 +36,7 @@ public class CallObserver extends ContentObserver {
             Cursor cur = context.getContentResolver().query(
                     android.provider.CallLog.Calls.CONTENT_URI, null, null, null, null);
             if (cur != null) {
-                if (cur.moveToLast()) {// Movetonext?
+                if (cur.moveToLast()) {
 
                     long currentCallId = cur.getLong(cur.getColumnIndex("_id"));
                     if (this.lastCallId != currentCallId) {
@@ -49,7 +49,6 @@ public class CallObserver extends ContentObserver {
                                 .getColumnIndex(android.provider.CallLog.Calls.TYPE));
                         String duration = cur.getString(cur
                                 .getColumnIndex(android.provider.CallLog.Calls.DURATION));
-                        // Logger.log(context, "sent");
 
                         CallDataSource datasource = new CallDataSource(context);
                         datasource.open();

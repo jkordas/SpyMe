@@ -48,25 +48,12 @@ public class SmsDataSource {
         values.put(SmsTable.COLUMN_TIMESTAMP, String.valueOf(timestamp));
         long insertId = database.insert(SmsTable.TABLE_SMS, null, values);
         Logger.log(this.context, "sms saved to database");
-        /*
-		 * Cursor cursor = database.query(SMSDatabaseOpenHelper.TABLE_SMS,
-		 * allColumns, SMSDatabaseOpenHelper.COLUMN_ID + " = " + insertId, null,
-		 * null, null, null); cursor.moveToFirst(); Comment newComment =
-		 * cursorToComment(cursor); cursor.close(); return newComment;
-		 */
     }
 
     public void clearTable() {
         database.execSQL("delete from " + SmsTable.TABLE_SMS);
         Logger.log(this.context, "sms table cleared");
     }
-
-	/*
-	 * public void deleteComment(Comment comment) { long id = comment.getId();
-	 * System.out.println("Comment deleted with id: " + id);
-	 * database.delete(MySQLiteHelper.TABLE_COMMENTS, MySQLiteHelper.COLUMN_ID +
-	 * " = " + id, null); }
-	 */
 
     public List<Sms> getAllSMS() {
         List<Sms> smsList = new ArrayList<Sms>();

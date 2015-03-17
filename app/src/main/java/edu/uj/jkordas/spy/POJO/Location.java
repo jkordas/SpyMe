@@ -4,7 +4,6 @@ public class Location {
     private long id;
     private double longitude;
     private double latitude;
-    private int dayOfYear;
 
     public long getId() {
         return id;
@@ -22,14 +21,9 @@ public class Location {
         return latitude;
     }
 
-    public int getDayOfYear() {
-        return dayOfYear;
-    }
-
     public Location(double _longitude, double _latitude, int _dayOfYear) {
         this.longitude = _longitude;
         this.latitude = _latitude;
-        this.dayOfYear = _dayOfYear;
     }
 
     @Override
