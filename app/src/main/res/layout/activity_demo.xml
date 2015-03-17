@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".DemoActivity">
+
+    <Button
+        android:id="@+id/btn_send_report"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:onClick="sendReport"
+        android:text="Send report" />
+
+    <Button
+        android:id="@+id/btn_show_messages"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_send_report"
+        android:layout_below="@+id/btn_send_report"
+        android:onClick="showMessages"
+        android:text="Show messages" />
+
+    <Button
+        android:id="@+id/btn_show_calls"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_show_messages"
+        android:layout_below="@+id/btn_show_messages"
+        android:onClick="showCalls"
+        android:text="Show calls" />
+
+    <Button
+        android:id="@+id/btn_show_history"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="showHistory"
+        android:text="Show history"
+        android:layout_alignLeft="@+id/btn_show_calls"
+        android:layout_below="@+id/btn_show_calls" />
+
+    <Button
+        android:id="@+id/btn_show_locations"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/btn_show_history"
+        android:layout_below="@+id/btn_show_history"
+        android:onClick="showLocations"
+        android:text="Show locations" />
+
+</RelativeLayout>

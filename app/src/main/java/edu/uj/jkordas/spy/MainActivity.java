@@ -1,9 +1,14 @@
 package edu.uj.jkordas.spy;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import edu.uj.jkordas.spy.developer.DemoActivity;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +17,11 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final Context context = this.getApplicationContext();
+
+        // use this to start and trigger a service
+        Intent i = new Intent(context, SpyService.class);
+        context.startService(i);
     }
 
 
@@ -35,5 +45,10 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void startDemo(View view) {
+        Intent intent = new Intent(this, DemoActivity.class);
+        startActivity(intent);
     }
 }
