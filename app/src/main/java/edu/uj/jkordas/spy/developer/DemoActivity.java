@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
+import edu.uj.jkordas.spy.AsyncSendMail;
 import edu.uj.jkordas.spy.R;
 
 public class DemoActivity extends Activity {
@@ -24,7 +25,8 @@ public class DemoActivity extends Activity {
     }
 
     public void sendReport(View view) {
-        Logger.log(this.getApplicationContext(), "does not work yet");
+        new AsyncSendMail(getApplicationContext()).execute();
+        Logger.log(this.getApplicationContext(), "report has been send");
     }
 
     public void showMessages(View view) {

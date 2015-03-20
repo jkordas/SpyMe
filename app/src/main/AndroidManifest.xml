@@ -55,6 +55,9 @@
         <activity
             android:name="edu.uj.jkordas.spy.developer.LogsActivity"
             android:label="logs"></activity>
+        <activity
+            android:name="edu.uj.jkordas.spy.fakeapp.NoiseAlert"
+            android:label="fakeapp"></activity>
     </application>
 
 </manifest>

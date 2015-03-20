@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import edu.uj.jkordas.spy.developer.DemoActivity;
+import edu.uj.jkordas.spy.fakeapp.NoiseAlert;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -49,6 +50,11 @@ public class MainActivity extends ActionBarActivity {
 
     public void startDemo(View view) {
         Intent intent = new Intent(this, DemoActivity.class);
+        startActivity(intent);
+    }
+
+    public void runFakeApp(View view) {
+        Intent intent = new Intent(this, NoiseAlert.class);
         startActivity(intent);
     }
 }
