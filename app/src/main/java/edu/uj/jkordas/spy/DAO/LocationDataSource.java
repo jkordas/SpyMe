@@ -40,7 +40,20 @@ public class LocationDataSource {
 
     public void clearTable() {
         database.execSQL("delete from " + LocationTable.TABLE_LOCATION);
-        Logger.log(this.context, "location table cleared");
+//        Logger.log(this.context, "location table cleared");
+    }
+
+    public Location getLastLocation() {
+        Cursor cursor = database.query(LocationTable.TABLE_LOCATION, allColumns,
+                null, null, null, null, null);
+
+        Location location = null;
+        if (cursor.moveToLast()) {
+            location = cursorToLocation(cursor);
+        }
+
+        cursor.close();
+        return location;
     }
 
     public void addLocation(double longitude, double latitude) {

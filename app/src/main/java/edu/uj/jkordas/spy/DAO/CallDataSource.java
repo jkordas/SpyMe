@@ -54,7 +54,7 @@ public class CallDataSource {
 
     public void clearTable() {
         database.execSQL("delete from " + CallTable.TABLE_CALL);
-        Logger.log(this.context, "call table cleared");
+//        Logger.log(this.context, "call table cleared");
     }
 
     public List<Call> getAllCalls() {
@@ -83,5 +83,19 @@ public class CallDataSource {
         currentCall.setContactName(cursor.getString(2));
         currentCall.setDuration(cursor.getInt(4));
         return currentCall;
+    }
+
+    public Call getLastCall() {
+
+        Cursor cursor = database.query(CallTable.TABLE_CALL, allColumns, null,
+                null, null, null, null);
+
+        Call call = null;
+        if (cursor.moveToLast()) {
+            call = cursorToCall(cursor);
+        }
+        // make sure to close the cursor
+        cursor.close();
+        return call;
     }
 }

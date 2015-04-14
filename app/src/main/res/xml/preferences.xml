@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Supervisor Data">
+        <EditTextPreference
+            android:dialogTitle="supervisor number"
+            android:key="supervisor_number"
+            android:summary="Supervisor Number"
+            android:title="number" />
+        <EditTextPreference
+            android:dialogTitle="supervisor prefix"
+            android:key="supervisor_prefix"
+            android:summary="Supervisor prefix"
+            android:title="prefix" />
+        <EditTextPreference
+            android:dialogTitle="secret code"
+            android:key="secret_code"
+            android:summary="Secret code "
+            android:title="PIN" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

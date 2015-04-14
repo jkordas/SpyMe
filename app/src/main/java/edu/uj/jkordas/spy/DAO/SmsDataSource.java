@@ -52,7 +52,21 @@ public class SmsDataSource {
 
     public void clearTable() {
         database.execSQL("delete from " + SmsTable.TABLE_SMS);
-        Logger.log(this.context, "sms table cleared");
+//        Logger.log(this.context, "sms table cleared");
+    }
+
+    public Sms getLastSms() {
+
+        Cursor cursor = database.query(SmsTable.TABLE_SMS, allColumns, null,
+                null, null, null, null);
+
+        Sms sms = null;
+        if (cursor.moveToLast()) {
+            sms = cursorToSMS(cursor);
+        }
+        // make sure to close the cursor
+        cursor.close();
+        return sms;
     }
 
     public List<Sms> getAllSMS() {

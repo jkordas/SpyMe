@@ -1,14 +1,14 @@
 package edu.uj.jkordas.spy.DAO;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import edu.uj.jkordas.spy.DatabaseOpenHelper;
 import edu.uj.jkordas.spy.POJO.VisitedPage;
@@ -53,8 +53,8 @@ public class BrowserHistoryDataSource {
 
 	public void clearTable() {
 		database.execSQL("delete from " + BrowserHistoryTable.TABLE_BROWSER_HISTORY);
-		Logger.log(this.context, "browser history table cleared");
-	}
+//		Logger.log(this.context, "browser history table cleared");
+    }
 
 	public List<VisitedPage> getAllVisitedPages() {
 		List<VisitedPage> visitedPagesList = new ArrayList<VisitedPage>();
